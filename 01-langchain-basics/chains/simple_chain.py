@@ -15,11 +15,10 @@
     - 다양한 OutputParser를 사용하여 출력 형식 지정 가능
 """
 
-from langchain_openai import ChatOpenAI
-from pydantic import SecretStr
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
+from common.llm import get_llm
 from config import settings
 from utils.logger import setup_logger
 
@@ -32,11 +31,7 @@ def simple_chain_example_1():
     """
 
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt = ChatPromptTemplate.from_template(
@@ -65,11 +60,7 @@ def simple_chain_example_2():
     예제 2: 여러 입력 변수를 사용하는 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt = ChatPromptTemplate.from_template(
@@ -99,11 +90,7 @@ def simple_chain_example_3():
     """
 
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 시스템 프롬프트, 유저 프롬프트 정의
     prompt = ChatPromptTemplate.from_messages([
@@ -134,11 +121,7 @@ def simple_chain_example_4():
     """
 
     # llm 초기화 
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0,
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt = ChatPromptTemplate.from_template(

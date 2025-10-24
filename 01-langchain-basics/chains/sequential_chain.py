@@ -12,12 +12,11 @@
     - 각 작업은 독립적으로 실행되며, 결과는 딕셔너리 형태로 반환됩니다.
 """
 
-from langchain_openai import ChatOpenAI
-from pydantic import SecretStr
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 
+from common.llm import get_llm
 from config import settings
 from utils.logger import setup_logger
 
@@ -29,11 +28,7 @@ def sequential_chain_example_1():
     """
 
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt1 = ChatPromptTemplate.from_template(
@@ -74,11 +69,7 @@ def sequential_chain_example_2():
     예제 2: 중간 결과를 변수로 포함하는 순차 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt1 = ChatPromptTemplate.from_template(
@@ -120,11 +111,7 @@ def sequential_chain_example_3():
     예제 3: 다단계 분석 
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt1 = ChatPromptTemplate.from_template(
@@ -177,11 +164,7 @@ def sequential_chain_example_4():
     예제 4: 병렬 실행 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0   
-    )
+    llm = get_llm()
 
     # 프롬프트 정의
     prompt1 = ChatPromptTemplate.from_template(
@@ -227,12 +210,7 @@ def sequential_chain_example_5():
     예제 5: 중첩된 순차 및 병렬 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0   
-    )
-
+    llm = get_llm()
     # 프롬프트 정의
     prompt = ChatPromptTemplate.from_template(
         "{continent}대륙에 있는 나라 하나를 선택해주세요. 부가적인 설명없이 나라 이름만 답해주세요."

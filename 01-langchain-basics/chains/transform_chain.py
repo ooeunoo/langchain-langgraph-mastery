@@ -9,14 +9,13 @@
 """
 
 
-from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
-from pydantic import SecretStr
 import re
 import json
 
+from common.llm import get_llm
 from config.settings import settings
 from utils.logger import setup_logger
 
@@ -28,11 +27,7 @@ def transform_chain_example_1():
     예제 1: 텍스트 정제 변환 (불필요한 공백, 특수문자 제거)
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 텍스트 정제 함수
     def clean_text(text: str) -> str:
@@ -79,11 +74,7 @@ def transform_chain_example_2():
     예제 2: 데이터 포맷 변환
     """ 
     # llm 초기화
-    llm = ChatOpenAI(   
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # CSV to Dict 변환 함수
     def csv_to_dict(csv_text: str) -> dict:
@@ -136,11 +127,7 @@ def transform_chain_example_3():
     예제 3: 데이터 추출 변환
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 이메일 추출 
     def extract_emails(text: str) -> list[str]:
@@ -199,11 +186,7 @@ def transform_chain_example_4():
     예제 4: 전처리 파이프라인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 전처리 함수 1 - 텍스트 정제
     def clean_text(text: str) -> str:

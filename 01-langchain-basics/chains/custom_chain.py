@@ -5,6 +5,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from pydantic import SecretStr, BaseModel, Field
 
+from common.llm import get_llm
 from config.settings import settings
 from utils.logger import setup_logger
 
@@ -15,11 +16,7 @@ def custom_chain_example_1():
     예제 1: 커스텀 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm: ChatOpenAI = get_llm()
 
     # 커스텀 전처리 함수 정의
     def preprocess(inputs: Dict[str, Any]) -> Dict[str, Any]:
@@ -83,11 +80,7 @@ def custom_chain_example_2():
     예제 2: 상태 유지 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        temperature=settings.OPENAI_TEMPERATURE,
-        api_key=SecretStr(settings.OPENAI_API_KEY)
-    )
+    llm = get_llm()
     
     # 상태 저장소
     class ChainState:

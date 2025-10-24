@@ -14,12 +14,12 @@
         lambda x: "간단한 응답 생성"
     )
 """
-from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableBranch, RunnablePassthrough, RunnableLambda 
 from pydantic import SecretStr
 
+from common.llm import get_llm
 from config.settings import settings
 from utils.logger import setup_logger
 
@@ -30,11 +30,7 @@ def router_chain_example_1():
     예제 1: 입력값에 따른 라우팅 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 라우팅 프롬프트 정의
     korean_prompt = ChatPromptTemplate.from_template(
@@ -83,11 +79,7 @@ def router_chain_example_2():
     """
     예제 1: LLM의 응답에 따른 라우팅 체인
     """
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 라우팅 프롬프트 정의
     routing_prompt = ChatPromptTemplate.from_template(
@@ -146,11 +138,7 @@ def router_chain_example_3():
     예제 3: 감정 기반 라우터 체인
     """
     # llm 초기화
-    llm = ChatOpenAI(
-        model=settings.OPENAI_MODEL,
-        api_key=SecretStr(settings.OPENAI_API_KEY),
-        temperature=0
-    )
+    llm = get_llm()
 
     # 감정 분석 프롬프트 정의
     sentiment_prompt = ChatPromptTemplate.from_template(
