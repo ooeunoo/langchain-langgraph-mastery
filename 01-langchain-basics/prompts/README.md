@@ -61,7 +61,7 @@ few_shot_prompt = FewShotPromptTemplate(
 )
 ```
 
-### 3. `partial_prompts.py` 
+### 3. `partial_prompts.py`
 
 **부분 프롬프트**
 
@@ -140,7 +140,7 @@ AI: 어시스턴트 응답
 
 ---
 
-## 💡 프롬프트 엔지니어링 팁
+## 프롬프트 엔지니어링 팁
 
 ### 1. 명확하고 구체적으로
 
@@ -216,7 +216,7 @@ examples = [
 
 ---
 
-##  참고 자료
+## 참고 자료
 
 ### 공식 문서
 
