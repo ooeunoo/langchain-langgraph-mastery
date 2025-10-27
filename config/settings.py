@@ -19,6 +19,8 @@ class Settings(BaseSettings):
         default="./data/chroma",
         description="ChromaDB 데이터 저장 경로"
     )
+
+    TAVILY_API_KEY: str = Field(..., description="Tavily API 키")
     
     # LangSmith (Optional)
     LANGCHAIN_API_KEY: str = Field(default="", description="LangSmith API 키")
