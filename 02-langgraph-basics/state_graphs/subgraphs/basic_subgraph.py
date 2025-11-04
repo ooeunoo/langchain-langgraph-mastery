@@ -63,12 +63,12 @@ def basic_subgraph_example_1():
     builder = StateGraph(MainGraphState)
 
     builder.add_node('start', start_task)
-    builder.add_node('subgraph', call_subgraph)
+    builder.add_node('process_step', call_subgraph)
     builder.add_node('finalize', finalize)
 
     builder.add_edge(START, 'start')
-    builder.add_edge('start', 'subgraph')
-    builder.add_edge('subgraph', 'finalize')
+    builder.add_edge('start', 'process_step')
+    builder.add_edge('process_step', 'finalize')
     builder.add_edge('finalize', END)
 
     graph = builder.compile()

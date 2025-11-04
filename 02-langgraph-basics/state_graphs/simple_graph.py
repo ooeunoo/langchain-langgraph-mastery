@@ -157,7 +157,6 @@ async def simple_graph_example_4():
                 print(content, end="", flush=True)
     
     return graph
-    return graph
 
 if __name__ == "__main__":
     import asyncio
